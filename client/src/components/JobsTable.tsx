@@ -12,11 +12,11 @@ export default function JobsTable({
   onEdit,
 }: JobsTableProps) {
   function handleStatusBGColor(status: string) {
-    if (status.toLowerCase() === "applied") return "bg-blue-500";
-    if (status.toLowerCase() === "rejected") return "bg-red-500";
-    if (status.toLowerCase() === "interviewing") return "bg-yellow-500";
-    if (status.toLowerCase() === "pending") return "bg-gray-500";
-    if (status.toLowerCase() === "accepted") return "bg-green-500";
+  if (status === "applied") return "bg-blue-500";
+  if (status === "rejected") return "bg-red-500";
+  if (status === "interview") return "bg-yellow-500";
+  if (status === "ghosted") return "bg-gray-500";
+  if (status === "offer") return "bg-green-500";
 
     return "bg-amber-100 text-amber-800";
   }

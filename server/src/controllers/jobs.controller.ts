@@ -1,30 +1,37 @@
 import { Request, Response } from 'express'
-import { v4 as uuid4 } from 'uuid'
 import { Job, CreateJobInput } from '../types/index'
+import { prisma } from '../lib/prisma'
 
-const jobs: Job[] = []
+export const getAllJobs = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  const jobs = await prisma.job.findMany()
 
-export const getAllJobs = (req: Request, res: Response): void => {
   res.json({
     success: true,
     data: jobs,
   })
 }
+// export const getAllJobs = (req: Request, res: Response): void => {
+//   res.json({
+//     success: true,
+//     data: jobs,
+//   })
+// }
 
-export const createJob = (req: Request, res: Response): void => {
+export const createJob = async (req: Request, res: Response): Promise<void> => {
   const body = req.body as CreateJobInput
 
-  const newJob: Job = {
-    id: uuid4(),
-    company: body.company,
-    role: body.role,
-    jobUrl: body.jobUrl,
-    status: body.status,
-    notes: body.notes,
-    appliedAt: new Date().toISOString(),
-  }
-
-  jobs.push(newJob)
+  const newJob = await prisma.job.create({
+    data: {
+      company: body.company,
+      role: body.role,
+      jobUrl: body.jobUrl,
+      status: body.status,
+      notes: body.notes,
+    },
+  })
 
   res.status(201).json({
     success: true,
@@ -32,39 +39,39 @@ export const createJob = (req: Request, res: Response): void => {
   })
 }
 
-export const deleteJob = (req: Request, res: Response): void => {
-  const { id } = req.params
-  const index = jobs.findIndex((job) => job.id === id)
+export const deleteJob = async (req: Request, res: Response): Promise<void> => {
+  const id = req.params.id as string
+  try {
+    await prisma.job.delete({ where: { id: id } })
 
-  if (index === -1) {
-    res.status(400).json({ success: false, message: 'Job not found' })
+    res.json({
+      success: true,
+      message: 'Job deleted',
+    })
+  } catch {
+    res.status(404).json({
+      success: false,
+      message: 'Job not found to be deleted',
+    })
   }
-  jobs.splice(index, 1) // to delete from the index and delete one element from that index i.e delete the element at that indx
-
-  res.json({
-    success: true,
-    message: 'Job deleted',
-  })
 }
 
-export const updateJob = (req: Request, res: Response): void => {
-  const { id } = req.params
+export const updateJob = async (req: Request, res: Response): Promise<void> => {
+  const id = req.params.id as string
   const body = req.body as CreateJobInput
 
-  const index = jobs.findIndex((j) => j.id === id)
-
-  if (index === -1) {
+  try {
+    const updatedJob = await prisma.job.update({
+      where: { id: id },
+      data: { ...body },
+    })
+    res.json({
+      success: true,
+      data: updatedJob,
+    })
+  } catch {
     res
       .status(400)
       .json({ success: false, message: 'No such job found to update' })
-    return
   }
-
-  jobs[index] = { ...jobs[index], ...body }
-  const updatedJob = jobs[index]
-
-  res.json({
-    success: true,
-    data: updatedJob,
-  })
 }

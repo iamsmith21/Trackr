@@ -16,7 +16,7 @@ export default function AddJobForm({
   const [company, setCompany] = useState("");
   const [role, setRole] = useState("");
   const [jobUrl, setUrl] = useState("");
-  const [status, setStatus] = useState("Applied");
+  const [status, setStatus] = useState("applied");
   const [notes, setNote] = useState("");
 
   async function handleSubmit(e: React.FormEvent) {
@@ -34,6 +34,12 @@ export default function AddJobForm({
     }
     fetchJobs();
     isOnEdit(null);
+
+    setCompany("");
+    setRole("");
+    setUrl("");
+    setStatus("applied");
+    setNote("");
   }
 
   useEffect(() => {
@@ -47,7 +53,7 @@ export default function AddJobForm({
       setCompany("");
       setRole("");
       setUrl("");
-      setStatus("Applied");
+      setStatus("applied");
       setNote("");
     }
   }, [editingJob]);
@@ -80,11 +86,11 @@ export default function AddJobForm({
 
         <label> Application Status</label>
         <select value={status} onChange={(e) => setStatus(e.target.value)}>
-          <option value="Applied">Applied</option>
-          <option value="Pending">Pending</option>
-          <option value="Interviewing">Interviewing</option>
-          <option value="Accepted">Accepted</option>
-          <option value="Rejected">Rejected</option>
+          <option value="applied">Applied</option>
+          <option value="interview">Interviewing</option>
+          <option value="offer">Offered</option>
+          <option value="rejected">Rejected</option>
+          <option value="ghosted">Ghosted</option>
         </select>
 
         <label> Notes</label>
