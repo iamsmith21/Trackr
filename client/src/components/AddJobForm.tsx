@@ -1,11 +1,18 @@
-import { useState } from "react";
-import { createJob } from "../utils/api";
+import { useEffect, useState } from "react";
+import { createJob, updateJob } from "../utils/api";
+import type { Job } from "../types";
 
 interface AddJobFormProps {
   fetchJobs: () => void;
+  editingJob: Job | null;
+  isOnEdit: (job: Job | null) => void;
 }
 
-export default function AddJobForm({ fetchJobs }: AddJobFormProps) {
+export default function AddJobForm({
+  fetchJobs,
+  editingJob,
+  isOnEdit,
+}: AddJobFormProps) {
   const [company, setCompany] = useState("");
   const [role, setRole] = useState("");
   const [jobUrl, setUrl] = useState("");
@@ -14,16 +21,36 @@ export default function AddJobForm({ fetchJobs }: AddJobFormProps) {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    // console.log({ company, role, jobUrl, status, note });
-    await createJob({
-      company,
-      role,
-      jobUrl,
-      status,
-      notes,
-    });
+    if (editingJob) {
+      await updateJob(editingJob.id, { company, role, jobUrl, status, notes });
+    } else {
+      await createJob({
+        company,
+        role,
+        jobUrl,
+        status,
+        notes,
+      });
+    }
     fetchJobs();
+    isOnEdit(null);
   }
+
+  useEffect(() => {
+    if (editingJob) {
+      setCompany(editingJob.company);
+      setRole(editingJob.role);
+      setUrl(editingJob.jobUrl);
+      setStatus(editingJob.status);
+      setNote(editingJob.notes);
+    } else {
+      setCompany("");
+      setRole("");
+      setUrl("");
+      setStatus("Applied");
+      setNote("");
+    }
+  }, [editingJob]);
   return (
     <div>
       <form onSubmit={handleSubmit}>

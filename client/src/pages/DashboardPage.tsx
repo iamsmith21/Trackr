@@ -8,6 +8,7 @@ import { getJobs, deleteJob } from "../utils/api";
 
 export default function DashboardPage() {
   const [jobList, setJobList] = useState<Job[]>([]);
+  const [editingJob, setEditingJob] = useState<Job | null>(null);
 
   async function fetchJobs() {
     const data = await getJobs();
@@ -19,6 +20,7 @@ export default function DashboardPage() {
     fetchJobs();
   }
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     fetchJobs();
   }, []);
 
@@ -26,8 +28,16 @@ export default function DashboardPage() {
     <>
       <Navbar />
       <StatsCard />
-      <AddJobForm fetchJobs={fetchJobs} />
-      <JobsTable jobList={jobList} onDelete={handleDelete} />
+      <AddJobForm
+        fetchJobs={fetchJobs}
+        editingJob={editingJob}
+        isOnEdit={setEditingJob}
+      />
+      <JobsTable
+        jobList={jobList}
+        onDelete={handleDelete}
+        onEdit={setEditingJob}
+      />
     </>
   );
 }

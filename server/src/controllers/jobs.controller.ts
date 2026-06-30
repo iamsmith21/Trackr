@@ -46,3 +46,25 @@ export const deleteJob = (req: Request, res: Response): void => {
     message: 'Job deleted',
   })
 }
+
+export const updateJob = (req: Request, res: Response): void => {
+  const { id } = req.params
+  const body = req.body as CreateJobInput
+
+  const index = jobs.findIndex((j) => j.id === id)
+
+  if (index === -1) {
+    res
+      .status(400)
+      .json({ success: false, message: 'No such job found to update' })
+    return
+  }
+
+  jobs[index] = { ...jobs[index], ...body }
+  const updatedJob = jobs[index]
+
+  res.json({
+    success: true,
+    data: updatedJob,
+  })
+}

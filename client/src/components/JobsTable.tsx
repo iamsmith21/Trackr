@@ -3,9 +3,14 @@ import type { Job } from "../types";
 interface JobsTableProps {
   jobList: Job[];
   onDelete: (id: string) => void;
+  onEdit: (job: Job) => void;
 }
 
-export default function JobsTable({ jobList, onDelete }: JobsTableProps) {
+export default function JobsTable({
+  jobList,
+  onDelete,
+  onEdit,
+}: JobsTableProps) {
   function handleStatusBGColor(status: string) {
     if (status.toLowerCase() === "applied") return "bg-blue-500";
     if (status.toLowerCase() === "rejected") return "bg-red-500";
@@ -51,9 +56,18 @@ export default function JobsTable({ jobList, onDelete }: JobsTableProps) {
 
               {/* delete : j.id */}
               <td className="px-4 py-3 border-t ">
-                <button onClick={() => onDelete(j.id)} className="text-red-700">
-                  Delete
-                </button>
+                <div>
+                  <button onClick={() => onEdit(j)} className="text-blue-500">
+                    Edit
+                  </button>
+                  <br />
+                  <button
+                    onClick={() => onDelete(j.id)}
+                    className="text-red-700"
+                  >
+                    Delete
+                  </button>
+                </div>
               </td>
             </tr>
           );

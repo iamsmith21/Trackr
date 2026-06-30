@@ -29,3 +29,13 @@ export async function deleteJob(id: string) {
     },
   });
 }
+
+export async function updateJob(id: string, formData: CreateJobInput) {
+  await fetch(`http://localhost:3001/api/jobs/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formData),
+  });
+}
