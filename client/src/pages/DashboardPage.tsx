@@ -25,19 +25,30 @@ export default function DashboardPage() {
   }, []);
 
   return (
-    <>
+    <div className="min-h-screen bg-slate-50/80 text-slate-800 antialiased relative overflow-hidden pb-16">
+      <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] max-w-[600px] rounded-full bg-blue-400/15 blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-[60vw] h-[60vw] max-w-[700px] rounded-full bg-indigo-400/15 blur-[130px] pointer-events-none" />
       <Navbar />
-      <StatsCard />
-      <AddJobForm
-        fetchJobs={fetchJobs}
-        editingJob={editingJob}
-        isOnEdit={setEditingJob}
-      />
-      <JobsTable
-        jobList={jobList}
-        onDelete={handleDelete}
-        onEdit={setEditingJob}
-      />
-    </>
+      <main className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 relative z-10">
+        <StatsCard jobList={jobList} />
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+          <div className="lg:col-span-1">
+            <AddJobForm
+              fetchJobs={fetchJobs}
+              editingJob={editingJob}
+              isOnEdit={setEditingJob}
+            />
+          </div>
+          <div className="lg:col-span-2">
+            <JobsTable
+              jobList={jobList}
+              onDelete={handleDelete}
+              onEdit={setEditingJob}
+            />
+          </div>
+        </div>
+      </main>
+    </div>
   );
 }

@@ -1,24 +1,50 @@
-export default function StatsCard() {
+import type { Job } from "../types";
+
+export default function StatsCard({jobList} : {jobList: Job[]}) {
+
+  const totalApplied = jobList.length;
+  const Interviews = jobList.filter((j) => j.status === "interview").length
+  const Offers = jobList.filter((j) => j.status === "offer").length
+  const responseRate = totalApplied > 0 ? Math.round((jobList.filter((j) => j.status !== "applied").length/totalApplied)*100) : 0
+
   return (
-    <div className="flex text-center justify-center m-5 gap-4 bg-white p-4">
-      <div className="flex-1 min-w-0 border border-gray-200 rounded-lg p-4 px-5">
-        <p className="text-sm text-gray-500">Total Applied</p>
-        <p className="text-2xl font-medium">24</p>
+    <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 w-full">
+      {/* Card 1 */}
+      <div className="bg-white/60 backdrop-blur-sm border border-slate-200/50 rounded-2xl p-6 shadow-sm hover:shadow-md hover:bg-white/80 hover:-translate-y-1 transition-all duration-300">
+        <p className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">
+          Total Applied
+        </p>
+        <p className="text-3xl font-bold text-slate-900 tracking-tight">{totalApplied}</p>
       </div>
 
-      <div className="flex-1 min-w-0 border border-gray-200 rounded-lg p-4 px-5">
-        <p className="text-sm text-gray-500">Interviews</p>
-        <p className="text-2xl font-medium">5</p>
+      {/* Card 2 */}
+      <div className="bg-white/60 backdrop-blur-sm border border-slate-200/50 rounded-2xl p-6 shadow-sm hover:shadow-md hover:bg-white/80 hover:-translate-y-1 transition-all duration-300">
+        <p className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">
+          Interviews
+        </p>
+        <p className="text-3xl font-bold text-slate-900 tracking-tight text-amber-600">
+          {Interviews}
+        </p>
       </div>
 
-      <div className="flex-1 min-w-0 border border-gray-200 rounded-lg p-4 px-5">
-        <p className="text-sm text-gray-500">Offers</p>
-        <p className="text-2xl font-medium">1</p>
+      {/* Card 3 */}
+      <div className="bg-white/60 backdrop-blur-sm border border-slate-200/50 rounded-2xl p-6 shadow-sm hover:shadow-md hover:bg-white/80 hover:-translate-y-1 transition-all duration-300">
+        <p className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">
+          Offers
+        </p>
+        <p className="text-3xl font-bold text-slate-900 tracking-tight text-emerald-600">
+          {Offers}
+        </p>
       </div>
 
-      <div className="flex-1 min-w-0 border border-gray-200 rounded-lg p-4 px-5">
-        <p className="text-sm text-gray-500">Response Rate</p>
-        <p className="text-2xl font-medium">5%</p>
+      {/* Card 4 */}
+      <div className="bg-white/60 backdrop-blur-sm border border-slate-200/50 rounded-2xl p-6 shadow-sm hover:shadow-md hover:bg-white/80 hover:-translate-y-1 transition-all duration-300">
+        <p className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">
+          Response Rate
+        </p>
+        <p className="text-3xl font-bold text-slate-900 tracking-tight text-blue-600">
+          {responseRate}%
+        </p>
       </div>
     </div>
   );
