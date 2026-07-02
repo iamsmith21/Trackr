@@ -1,8 +1,13 @@
 import type { CreateJobInput } from "../types";
 
+const token = localStorage.getItem("token");
 export async function getJobs() {
   try {
-    const res = await fetch("http://localhost:3001/api/jobs");
+    const res = await fetch("http://localhost:3001/api/jobs", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     const data = await res.json();
     return data;
   } catch (error) {
@@ -15,6 +20,7 @@ export async function createJob(formData: CreateJobInput) {
   await fetch("http://localhost:3001/api/jobs", {
     method: "POST",
     headers: {
+      Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify(formData),
@@ -25,6 +31,7 @@ export async function deleteJob(id: string) {
   await fetch(`http://localhost:3001/api/jobs/${id}`, {
     method: "DELETE",
     headers: {
+      Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
     },
   });
@@ -34,8 +41,29 @@ export async function updateJob(id: string, formData: CreateJobInput) {
   await fetch(`http://localhost:3001/api/jobs/${id}`, {
     method: "PUT",
     headers: {
+      Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify(formData),
   });
+}
+
+export async function loginUser(email: string, password: string) {
+  try {
+    const res = await fetch("http://localhost:3001/api/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    });
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error("Login failed", error);
+    return {
+      success: false,
+      message: "Something went wrong",
+    };
+  }
 }

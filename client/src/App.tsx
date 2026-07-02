@@ -8,8 +8,8 @@ export default function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<DashboardPage />} />
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/" element={<LoginPage />} />
         <Route path="/jobs/:id" element={<JobDetailPage />} />
         <Route path="/register" element={<RegisterPage />} />
       </Routes>
