@@ -18,6 +18,9 @@ app.get('/api/health', (req, res) => {
 //Importing the JOB routes
 import router from './routes/jobs.routes'
 app.use('/api/jobs', router)
+
+import authRouter from './routes/auth.routes'
+app.use('/api/auth', authRouter)
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
 })

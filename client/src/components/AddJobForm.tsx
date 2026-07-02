@@ -6,12 +6,14 @@ interface AddJobFormProps {
   fetchJobs: () => void;
   editingJob: Job | null;
   isOnEdit: (job: Job | null) => void;
+  onClose?: () => void;
 }
 
 export default function AddJobForm({
   fetchJobs,
   editingJob,
   isOnEdit,
+  onClose
 }: AddJobFormProps) {
   const [company, setCompany] = useState("");
   const [role, setRole] = useState("");
@@ -40,6 +42,8 @@ export default function AddJobForm({
     setUrl("");
     setStatus("applied");
     setNote("");
+
+    onClose?.()
   }
 
   useEffect(() => {

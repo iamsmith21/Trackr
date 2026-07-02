@@ -13,7 +13,7 @@ datasource db {
 }
 
 enum JobStatus {
-  Applied
+  applied
   interview
   offer 
   rejected
@@ -23,10 +23,21 @@ enum JobStatus {
 //the table will be pluralized in postgres -> jobs
 model Job {
   id String @id @default(uuid())
+  userId String
+  user User @relation(fields: [userId], references: [id])
   company String
   role String
   jobUrl String
   status JobStatus
   notes String
   appliedAt DateTime @default(now())
+}
+
+model User {
+  id String @id @default(uuid())
+  firstname String 
+  lastname String
+  email String @unique
+  password String
+  jobs Job[]
 }

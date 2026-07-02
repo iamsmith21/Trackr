@@ -5,9 +5,11 @@ import {
   deleteJob,
   updateJob,
 } from '../controllers/jobs.controller'
+import AuthHandler from '../middleware/auth.middleware'
 
 const router = express.Router()
 
+router.use(AuthHandler)
 router.get('/', getAllJobs)
 router.post('/', createJob)
 router.delete('/:id', deleteJob)
