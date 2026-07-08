@@ -3,13 +3,21 @@ import DashboardPage from "./pages/DashboardPage";
 import LoginPage from "./pages/LoginPage";
 import JobDetailPage from "./pages/JobDetailPage";
 import RegisterPage from "./pages/RegisterPage";
+import LandingPage from "./pages/LandingPage";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 export default function App() {
   return (
     <>
       <Routes>
-        <Route path="/dashboard" element={<DashboardPage />} />
-        <Route path="/" element={<LoginPage />} />
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/dashboard" element={
+          <ProtectedRoute>
+
+          <DashboardPage />
+          </ProtectedRoute>
+         } />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/jobs/:id" element={<JobDetailPage />} />
         <Route path="/register" element={<RegisterPage />} />
       </Routes>

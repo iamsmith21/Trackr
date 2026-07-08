@@ -31,25 +31,35 @@ const mockJobs = [
 ];
 
 async function main() {
-  console.log("Seeding database with mock jobs...");
-  
-  // 3. Clear any existing database jobs to start fresh
+  console.log("Seeding database...");
+
+  // 1. Find the first user in the database to link these jobs to
+  const user = await prisma.user.findFirst();
+  if (!user) {
+    console.log("No users found in the database. Please register a user first!");
+    await pool.end();
+    return;
+  }
+
+  // 2. Clear existing jobs
   await prisma.job.deleteMany();
   
-  // 4. Create each mock job with a randomized application date in the last 30 days
+  // 3. Create mock jobs linked to the user's ID
   for (const job of mockJobs) {
     await prisma.job.create({
       data: {
         ...job,
+        userId: user.id, // 👈 Link the job to the user!
         status: job.status as JobStatus,
         appliedAt: new Date(Date.now() - Math.floor(Math.random() * 30) * 24 * 60 * 60 * 1000)
       }
     });
   }
   
-  console.log("Database seeded successfully!");
+  console.log(`Database seeded successfully for user: ${user.email}`);
   await pool.end();
 }
+
 
 main()
   .catch((e) => {

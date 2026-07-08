@@ -1,27 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@1,700;1,800&family=Sora:wght@400;500;600;700;800&display=swap');
 @import "tailwindcss";
+
+@theme {
+  --font-sans: 'Outfit', system-ui, -apple-system, sans-serif;
+  --font-display: 'Sora', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
+}
 
 @variant dark (&:where(.dark, .dark *));
 
 body {
-  background-color: #f5f5f7;
-  color: #1d1d1f;
+  font-family: var(--font-sans);
+  background-color: #FAFBF9; /* Subtlest mint-white, very clean and bright */
+  color: #1D1D1F; /* Apple core text */
   transition:
     background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
     color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .dark body {
-  background-color: #000000;
-  color: #f5f5f7;
+  background-color: #000000; /* Pure black dark mode background */
+  color: #F5F5F7; /* Apple silver dark mode text */
 }
 
+/* Premium Apple-Style Neutral Dark Mode Cards overrides */
 .dark .bg-white\/70 {
-  background-color: rgba(29, 29, 31, 0.72) !important;
+  background-color: rgba(22, 22, 23, 0.72) !important; /* Frosted charcoal */
   border-color: rgba(255, 255, 255, 0.08) !important;
 }
 
 .dark .bg-white\/60 {
-  background-color: rgba(29, 29, 31, 0.6) !important;
+  background-color: rgba(22, 22, 23, 0.60) !important;
   border-color: rgba(255, 255, 255, 0.06) !important;
 }
 
@@ -31,48 +40,49 @@ body {
 
 .dark .bg-slate-50\/50,
 .dark .bg-slate-50 {
-  background-color: rgba(45, 45, 49, 0.4) !important;
+  background-color: rgba(255, 255, 255, 0.04) !important;
   border-color: rgba(255, 255, 255, 0.06) !important;
 }
 
 .dark .text-slate-900 {
-  color: #ffffff !important;
+  color: #FFFFFF !important;
 }
 .dark .text-slate-800 {
-  color: #f5f5f7 !important;
+  color: #F5F5F7 !important;
 }
 .dark .text-slate-600 {
-  color: #a1a1a6 !important;
+  color: #86868B !important;
 }
 .text-slate-500 {
-  color: #86868b !important;
+  color: #86868B !important;
 }
 .text-slate-400 {
-  color: #86868b !important;
+  color: #86868B !important;
 }
 
+/* Clean status tags overrides for true dark mode */
 .dark .bg-blue-50 {
-  background-color: rgba(0, 122, 255, 0.15) !important;
-  color: #409cff !important;
-  border-color: rgba(0, 122, 255, 0.2) !important;
+  background-color: rgba(10, 132, 255, 0.15) !important; /* Apple Blue */
+  color: #64D2FF !important;
+  border-color: rgba(10, 132, 255, 0.20) !important;
 }
 .dark .bg-rose-50 {
-  background-color: rgba(255, 69, 58, 0.15) !important;
-  color: #ff6961 !important;
-  border-color: rgba(255, 69, 58, 0.2) !important;
+  background-color: rgba(255, 69, 58, 0.15) !important; /* Apple Red */
+  color: #FF453A !important;
+  border-color: rgba(255, 69, 58, 0.20) !important;
 }
 .dark .bg-amber-50 {
-  background-color: rgba(255, 159, 10, 0.15) !important;
-  color: #ffd60a !important;
-  border-color: rgba(255, 159, 10, 0.2) !important;
+  background-color: rgba(255, 159, 10, 0.15) !important; /* Apple Yellow/Orange */
+  color: #FFD60A !important;
+  border-color: rgba(255, 159, 10, 0.20) !important;
 }
 .dark .bg-slate-100 {
-  background-color: rgba(142, 142, 147, 0.15) !important;
-  color: #aeaeb2 !important;
-  border-color: rgba(142, 142, 147, 0.2) !important;
+  background-color: rgba(142, 142, 147, 0.15) !important; /* Apple Gray */
+  color: #AEAEB2 !important;
+  border-color: rgba(142, 142, 147, 0.20) !important;
 }
 .dark .bg-emerald-50 {
-  background-color: rgba(48, 209, 88, 0.15) !important;
-  color: #30d158 !important;
-  border-color: rgba(48, 209, 88, 0.2) !important;
+  background-color: rgba(48, 209, 88, 0.15) !important; /* Apple Green */
+  color: #30D158 !important;
+  border-color: rgba(48, 209, 88, 0.20) !important;
 }

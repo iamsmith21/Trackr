@@ -13,45 +13,43 @@ export default function JobsTable({
 }: JobsTableProps) {
   function handleStatusBGColor(status: string) {
     if (status === "applied")
-      return "bg-blue-50 text-blue-600 border border-blue-200/60";
+      return "bg-emerald-50 text-emerald-700 dark:text-emerald-400 border border-emerald-200/40";
     if (status === "rejected")
-      return "bg-rose-50 text-rose-600 border border-rose-200/60";
+      return "bg-rose-50 text-rose-600 dark:text-rose-400 border border-rose-200/40";
     if (status === "interview")
-      return "bg-amber-50 text-amber-700 border border-amber-200/60";
+      return "bg-amber-50 text-amber-700 dark:text-amber-400 border border-amber-200/40";
     if (status === "ghosted")
-      return "bg-slate-100 text-slate-600 border border-slate-200/60";
+      return "bg-slate-100 text-slate-600 dark:text-slate-400 border border-slate-200/40";
     if (status === "offer")
-      return "bg-emerald-50 text-emerald-700 border border-emerald-200/60";
+      return "bg-green-100 text-green-800 dark:bg-emerald-950/30 dark:text-emerald-400 border border-green-200/40";
 
-    return "bg-slate-50 text-slate-500 border border-slate-200/60";
+    return "bg-slate-50 text-slate-500 border border-slate-200/40";
   }
 
-
-
   return (
-    <div className="w-full bg-white/70 backdrop-blur-md border border-slate-200/60 rounded-3xl p-6 shadow-xl shadow-indigo-900/5 overflow-x-auto">
+    <div className="w-full bg-white/70 backdrop-blur-md border border-[#162518]/10 dark:border-white/10 rounded-3xl p-6 shadow-xl shadow-emerald-950/5 overflow-x-auto">
       <table className="w-full border-separate border-spacing-y-3 text-left">
         <thead>
           <tr>
-            <th className="text-slate-400 font-semibold text-xs uppercase tracking-wider px-6 pb-2 border-b border-slate-100">
+            <th className="text-slate-400 font-semibold text-xs uppercase tracking-wider px-6 pb-2 border-b border-[#162518]/5 dark:border-white/5">
               Company
             </th>
-            <th className="text-slate-400 font-semibold text-xs uppercase tracking-wider px-6 pb-2 border-b border-slate-100">
+            <th className="text-slate-400 font-semibold text-xs uppercase tracking-wider px-6 pb-2 border-b border-[#162518]/5 dark:border-white/5">
               Role
             </th>
-            <th className="text-slate-400 font-semibold text-xs uppercase tracking-wider px-6 pb-2 border-b border-slate-100">
+            <th className="text-slate-400 font-semibold text-xs uppercase tracking-wider px-6 pb-2 border-b border-[#162518]/5 dark:border-white/5">
               URL
             </th>
-            <th className="text-slate-400 font-semibold text-xs uppercase tracking-wider px-6 pb-2 border-b border-slate-100">
+            <th className="text-slate-400 font-semibold text-xs uppercase tracking-wider px-6 pb-2 border-b border-[#162518]/5 dark:border-white/5">
               Date Applied
             </th>
-            <th className="text-slate-400 font-semibold text-xs uppercase tracking-wider px-6 pb-2 border-b border-slate-100">
+            <th className="text-slate-400 font-semibold text-xs uppercase tracking-wider px-6 pb-2 border-b border-[#162518]/5 dark:border-white/5">
               Status
             </th>
-            <th className="text-slate-400 font-semibold text-xs uppercase tracking-wider px-6 pb-2 border-b border-slate-100">
+            <th className="text-slate-400 font-semibold text-xs uppercase tracking-wider px-6 pb-2 border-b border-[#162518]/5 dark:border-white/5">
               Notes
             </th>
-            <th className="text-slate-400 font-semibold text-xs uppercase tracking-wider px-6 pb-2 border-b border-slate-100">
+            <th className="text-slate-400 font-semibold text-xs uppercase tracking-wider px-6 pb-2 border-b border-[#162518]/5 dark:border-white/5">
               Actions
             </th>
           </tr>
@@ -63,18 +61,13 @@ export default function JobsTable({
                 key={j.id}
                 className="hover:-translate-y-0.5 transition-transform duration-200"
               >
-                {/* 
-                  Note the 'first:rounded-l-2xl' and 'last:rounded-r-2xl' classes. 
-                  Since we are using 'border-separate', we round the far left cell 
-                  and far right cell to create a capsule card shape.
-                */}
-                <td className="py-4 px-6 text-sm font-semibold text-slate-900 bg-slate-50/50 first:rounded-l-2xl border-t border-b border-l border-slate-100/85">
+                <td className="py-4 px-6 text-sm font-semibold text-slate-900 bg-[#162518]/5 dark:bg-[#E6EDE7]/5 first:rounded-l-2xl border-t border-b border-l border-[#162518]/5 dark:border-white/5">
                   {j.company}
                 </td>
-                <td className="py-4 px-6 text-sm text-slate-600 bg-slate-50/50 border-t border-b border-slate-100/85">
+                <td className="py-4 px-6 text-sm text-slate-600 dark:text-slate-300 bg-[#162518]/5 dark:bg-[#E6EDE7]/5 border-t border-b border-[#162518]/5 dark:border-white/5">
                   {j.role}
                 </td>
-                <td className="py-4 px-6 text-sm text-blue-500 bg-slate-50/50 border-t border-b border-slate-100/85">
+                <td className="py-4 px-6 text-sm text-emerald-700 dark:text-[#81C784] bg-[#162518]/5 dark:bg-[#E6EDE7]/5 border-t border-b border-[#162518]/5 dark:border-white/5">
                   <a
                     href={j.jobUrl}
                     target="_blank"
@@ -84,24 +77,24 @@ export default function JobsTable({
                     {j.jobUrl ? "Link" : "None"}
                   </a>
                 </td>
-                <td className="py-4 px-6 text-sm text-slate-500 bg-slate-50/50 border-t border-b border-slate-100/85">
+                <td className="py-4 px-6 text-sm text-slate-500 bg-[#162518]/5 dark:bg-[#E6EDE7]/5 border-t border-b border-[#162518]/5 dark:border-white/5">
                   {new Date(j.appliedAt).toLocaleDateString()}
                 </td>
-                <td className="py-4 px-6 text-sm bg-slate-50/50 border-t border-b border-slate-100/85">
+                <td className="py-4 px-6 text-sm bg-[#162518]/5 dark:bg-[#E6EDE7]/5 border-t border-b border-[#162518]/5 dark:border-white/5">
                   <span
                     className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold capitalize ${handleStatusBGColor(j.status)}`}
                   >
                     {j.status}
                   </span>
                 </td>
-                <td className="py-4 px-6 text-sm text-slate-500 bg-slate-50/50 border-t border-b border-slate-100/85 max-w-[150px] truncate">
+                <td className="py-4 px-6 text-sm text-slate-500 bg-[#162518]/5 dark:bg-[#E6EDE7]/5 border-t border-b border-[#162518]/5 dark:border-white/5 max-w-[150px] truncate">
                   {j.notes || "-"}
                 </td>
-                <td className="py-4 px-6 text-sm bg-slate-50/50 last:rounded-r-2xl border-t border-b border-r border-slate-100/85">
+                <td className="py-4 px-6 text-sm bg-[#162518]/5 dark:bg-[#E6EDE7]/5 last:rounded-r-2xl border-t border-b border-r border-[#162518]/5 dark:border-white/5">
                   <div className="flex items-center gap-3">
                     <button
                       onClick={() => onEdit(j)}
-                      className="text-blue-600 hover:text-blue-800 text-xs font-semibold hover:underline cursor-pointer"
+                      className="text-emerald-700 hover:text-emerald-800 dark:text-[#81C784] dark:hover:text-emerald-300 text-xs font-semibold hover:underline cursor-pointer"
                     >
                       Edit
                     </button>

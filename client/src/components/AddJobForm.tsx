@@ -62,7 +62,7 @@ export default function AddJobForm({
     }
   }, [editingJob]);
     return (
-    <div className="bg-white/70 backdrop-blur-md border border-slate-200/60 rounded-3xl p-6 sm:p-8 shadow-xl shadow-indigo-900/5 relative overflow-hidden">
+    <div className="bg-white/70 backdrop-blur-md border border-[#162518]/10 dark:border-white/10 rounded-3xl p-6 sm:p-8 shadow-xl shadow-emerald-950/5 relative overflow-hidden">
       {/* Title */}
       <h3 className="text-lg font-bold text-slate-900 mb-6">
         {editingJob ? "Edit Job Application" : "Add New Job"}
@@ -77,7 +77,7 @@ export default function AddJobForm({
             placeholder="Google"
             type="text"
             required
-            className="w-full bg-slate-50 border border-slate-200 text-slate-800 rounded-xl px-4 py-3 text-sm transition-all duration-300 focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none"
+            className="w-full bg-slate-50 border border-slate-200 text-slate-800 rounded-xl px-4 py-3 text-sm transition-all duration-300 focus:bg-white focus:border-emerald-600 focus:ring-4 focus:ring-emerald-500/10 outline-none"
           />
         </div>
 
@@ -89,7 +89,7 @@ export default function AddJobForm({
             placeholder="Software Developer"
             type="text"
             required
-            className="w-full bg-slate-50 border border-slate-200 text-slate-800 rounded-xl px-4 py-3 text-sm transition-all duration-300 focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none"
+            className="w-full bg-slate-50 border border-slate-200 text-slate-800 rounded-xl px-4 py-3 text-sm transition-all duration-300 focus:bg-white focus:border-emerald-600 focus:ring-4 focus:ring-emerald-500/10 outline-none"
           />
         </div>
 
@@ -100,7 +100,7 @@ export default function AddJobForm({
             onChange={(e) => setUrl(e.target.value)}
             placeholder="https://joburl.com"
             type="text"
-            className="w-full bg-slate-50 border border-slate-200 text-slate-800 rounded-xl px-4 py-3 text-sm transition-all duration-300 focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none"
+            className="w-full bg-slate-50 border border-slate-200 text-slate-800 rounded-xl px-4 py-3 text-sm transition-all duration-300 focus:bg-white focus:border-emerald-600 focus:ring-4 focus:ring-emerald-500/10 outline-none"
           />
         </div>
 
@@ -110,7 +110,7 @@ export default function AddJobForm({
             value={status} 
             onChange={(e) => setStatus(e.target.value)}
             required
-            className="w-full bg-slate-50 border border-slate-200 text-slate-800 rounded-xl px-4 py-3 text-sm transition-all duration-300 focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none appearance-none cursor-pointer"
+            className="w-full bg-slate-50 border border-slate-200 text-slate-800 rounded-xl px-4 py-3 text-sm transition-all duration-300 focus:bg-white focus:border-emerald-600 focus:ring-4 focus:ring-emerald-500/10 outline-none appearance-none cursor-pointer"
           >
             <option value="applied">Applied</option>
             <option value="interview">Interviewing</option>
@@ -127,13 +127,13 @@ export default function AddJobForm({
             onChange={(e) => setNote(e.target.value)}
             placeholder="(Optional) I got this job from..."
             type="text"
-            className="w-full bg-slate-50 border border-slate-200 text-slate-800 rounded-xl px-4 py-3 text-sm transition-all duration-300 focus:bg-white focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 outline-none"
+            className="w-full bg-slate-50 border border-slate-200 text-slate-800 rounded-xl px-4 py-3 text-sm transition-all duration-300 focus:bg-white focus:border-emerald-600 focus:ring-4 focus:ring-emerald-500/10 outline-none"
           />
         </div>
 
         <button 
           type="submit"
-          className="w-full mt-4 bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-semibold py-3 px-4 rounded-xl shadow-lg shadow-indigo-500/10 hover:shadow-indigo-500/20 transition-all duration-300 active:scale-[0.98] cursor-pointer"
+          className="w-full mt-4 bg-[#2F5C3B] hover:bg-[#24472E] dark:bg-[#E6EDE7] dark:text-[#0A0E0B] dark:hover:bg-white text-white font-semibold py-3 px-4 rounded-xl shadow-lg shadow-emerald-500/5 hover:shadow-emerald-500/10 transition-all duration-300 active:scale-[0.98] cursor-pointer"
         >
           {editingJob ? "Save Changes" : "Add Job"}
         </button>
