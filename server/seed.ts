@@ -1,4 +1,4 @@
-import { PrismaClient, JobStatus} from './src/generated/prisma/client';
+import { PrismaClient, JobStatus} from '@prisma/client';
 import { PrismaPg } from '@prisma/adapter-pg';
 import pg from 'pg';
 import dotenv from 'dotenv';
