@@ -1,9 +1,10 @@
 import type { CreateJobInput } from "../types";
 
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3001/api";
 
 export async function getJobs() {
   try {
-    const res = await fetch("http://localhost:3001/api/jobs", {
+    const res = await fetch(`${API_URL}/jobs`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
@@ -17,7 +18,7 @@ export async function getJobs() {
 }
 
 export async function createJob(formData: CreateJobInput) {
-  await fetch("http://localhost:3001/api/jobs", {
+  await fetch(`${API_URL}/jobs`, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -28,7 +29,7 @@ export async function createJob(formData: CreateJobInput) {
 }
 
 export async function deleteJob(id: string) {
-  await fetch(`http://localhost:3001/api/jobs/${id}`, {
+  await fetch(`${API_URL}/jobs/${id}`, {
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -38,7 +39,7 @@ export async function deleteJob(id: string) {
 }
 
 export async function updateJob(id: string, formData: CreateJobInput) {
-  await fetch(`http://localhost:3001/api/jobs/${id}`, {
+  await fetch(`${API_URL}/jobs/${id}`, {
     method: "PUT",
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -50,7 +51,7 @@ export async function updateJob(id: string, formData: CreateJobInput) {
 
 export async function loginUser(email: string, password: string) {
   try {
-    const res = await fetch("http://localhost:3001/api/auth/login", {
+    const res = await fetch(`${API_URL}/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -75,7 +76,7 @@ export async function registerUser(
   password: string,
 ) {
   try {
-    const res = await fetch("http://localhost:3001/api/auth/register", {
+    const res = await fetch(`${API_URL}/auth/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
