@@ -5,7 +5,7 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 const app = express()
-const PORT = process.env.port || 3001
+const port = process.env.port || 3001
 
 app.use(cors())
 app.use(express.json())
@@ -21,6 +21,11 @@ app.use('/api/jobs', router)
 
 import authRouter from './routes/auth.routes'
 app.use('/api/auth', authRouter)
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`)
-})
+
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
+  });
+}
+export default app; 
+
