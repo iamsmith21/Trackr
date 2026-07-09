@@ -1,6 +1,13 @@
 import type { CreateJobInput } from "../types";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3001/api";
+let API_URL = import.meta.env.VITE_API_URL || "http://localhost:3001/api";
+
+if (API_URL.endsWith("/")) {
+  API_URL = API_URL.slice(0, -1);
+}
+if (!API_URL.endsWith("/api")) {
+  API_URL = `${API_URL}/api`;
+}
 
 export async function getJobs() {
   try {
