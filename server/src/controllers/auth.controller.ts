@@ -44,8 +44,8 @@ export async function registerUser(req: Request, res: Response): Promise<void> {
       user: userWithoutPassword,
       message: 'New User Created Successfully',
     })
-  } catch {
-    res.status(500).json({ success: false, message: 'Something went wrong' })
+  } catch (error: any) {
+    res.status(500).json({ success: false, message: error.message || 'Something went wrong', error: error.toString(), stack: error.stack })
   }
 }
 
@@ -83,7 +83,7 @@ export async function loginUser(req: Request, res: Response): Promise<void> {
       user: usr,
       message: 'User Logged in successfully',
     })
-  } catch {
-    res.status(500).json({ success: false, message: 'Something went wrong' })
+  } catch (error: any) {
+    res.status(500).json({ success: false, message: error.message || 'Something went wrong', error: error.toString(), stack: error.stack })
   }
 }
