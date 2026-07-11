@@ -4,6 +4,7 @@ import {
   getAllJobs,
   deleteJob,
   updateJob,
+  getJobById
 } from '../controllers/jobs.controller'
 import AuthHandler from '../middleware/auth.middleware'
 
@@ -14,5 +15,6 @@ router.get('/', getAllJobs)
 router.post('/', createJob)
 router.delete('/:id', deleteJob)
 router.put('/:id', updateJob)
+router.get('/:id', getJobById)
 
 export default router

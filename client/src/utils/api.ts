@@ -100,3 +100,18 @@ export async function registerUser(
     };
   }
 }
+
+export async function getJobById(id : string) {
+  try {
+    const res = await fetch(`${API_URL}/jobs/${id}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+    const data = await res.json()
+    return data
+  } catch (error) {
+    console.log("Failed to fetch job details: ", error)
+    return null
+  }
+}

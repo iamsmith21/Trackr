@@ -96,3 +96,41 @@ export const updateJob = async (req: Request, res: Response): Promise<void> => {
       .json({ success: false, message: 'No such job found to update' })
   }
 }
+
+export const getJobById = async (req:Request,res: Response) : Promise<void> => {
+  const id = req.params.id as string
+  const user = req.userId
+
+  if (!user ){
+    res.status(401).json({
+      success : false,
+      message: "Unauthorized"
+    })
+  }
+
+  try {
+    const job = await prisma.job.findFirst({
+      where: {id: id, userId: user}
+    })
+
+    if (!job) {
+      res.status(404).json({
+        success : false,
+        message: "Job application not found"
+      })
+    }
+
+    res.json({
+      success : true,
+      data: job
+    })
+
+  } catch {
+
+    res.status(500).json({
+      success: false, message : "Server error retriving job details"
+    })
+  }
+
+
+}

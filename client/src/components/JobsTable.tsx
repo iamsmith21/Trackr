@@ -1,4 +1,5 @@
 import type { Job } from "../types";
+import { Link } from "react-router-dom";
 
 interface JobsTableProps {
   jobList: Job[];
@@ -62,7 +63,9 @@ export default function JobsTable({
                 className="hover:-translate-y-0.5 transition-transform duration-200"
               >
                 <td className="py-4 px-6 text-sm font-semibold text-slate-900 bg-[#162518]/5 dark:bg-[#E6EDE7]/5 first:rounded-l-2xl border-t border-b border-l border-[#162518]/5 dark:border-white/5">
-                  {j.company}
+                  <Link to={`/jobs/${j.id}`} className="hover:underline text-[#2F5C3B] dark:text-[#81C784] cursor-pointer">
+                    {j.company}
+                  </Link>
                 </td>
                 <td className="py-4 px-6 text-sm text-slate-600 dark:text-slate-300 bg-[#162518]/5 dark:bg-[#E6EDE7]/5 border-t border-b border-[#162518]/5 dark:border-white/5">
                   {j.role}
