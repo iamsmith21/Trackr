@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import DashboardPage from "./pages/DashboardPage";
 import LoginPage from "./pages/LoginPage";
 import JobDetailPage from "./pages/JobDetailPage";
@@ -18,8 +18,13 @@ export default function App() {
           </ProtectedRoute>
          } />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/jobs/:id" element={<JobDetailPage />} />
+        <Route path="/jobs/:id" element={
+          <ProtectedRoute>
+          <JobDetailPage />
+          </ProtectedRoute>
+          } />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </>
   );
