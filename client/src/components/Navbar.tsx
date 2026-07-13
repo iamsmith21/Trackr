@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Logo from "./Logo";
 
 export default function Navbar({ onAddClick }: { onAddClick: () => void }) {
   const [isDark, setIsDark] = useState(false);
@@ -29,14 +30,7 @@ export default function Navbar({ onAddClick }: { onAddClick: () => void }) {
   };
   return (
     <nav className="sticky top-0 z-50 w-full bg-white/70 dark:bg-[#161617]/70 backdrop-blur-md border-b border-slate-200/60 dark:border-white/10 px-6 py-4 flex items-center justify-between transition-all duration-300">
-      <div className="flex items-center gap-3">
-        <div className="w-8 h-8 rounded-lg bg-[#2F5C3B] dark:bg-[#E6EDE7] flex items-center justify-center text-white dark:text-[#0A0E0B] font-bold shadow-md shadow-emerald-950/10">
-          T
-        </div>
-        <span className="text-xl font-bold tracking-tight bg-gradient-to-r from-slate-900 to-slate-700 dark:from-white dark:to-[#d2d2d7] bg-clip-text text-transparent">
-          Trackr
-        </span>
-      </div>
+      <Logo />
 
       <div className="flex items-center gap-2">
         <button

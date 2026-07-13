@@ -34,7 +34,10 @@ async function main() {
   console.log("Seeding database...");
 
   // 1. Find the first user in the database to link these jobs to
-  const user = await prisma.user.findFirst();
+  const user = await prisma.user.findUnique({
+  where: { email: "deep.smith100@gmail.com" }
+});
+
   if (!user) {
     console.log("No users found in the database. Please register a user first!");
     await pool.end();
