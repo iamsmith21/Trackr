@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import Logo from "../components/Logo";
 
 export default function LandingPage() {
   const navigate = useNavigate();
@@ -8,15 +9,7 @@ export default function LandingPage() {
       
       {/* Environmental Style Navigation Header */}
       <header className="max-w-[1200px] w-full mx-auto px-6 py-6 flex items-center justify-between z-10">
-        <div className="flex items-center gap-2">
-          {/* Minimalist Pine Logo Box */}
-          <div className="w-7 h-7 rounded-md bg-[#2F5C3B] dark:bg-[#E6EDE7] flex items-center justify-center text-white dark:text-[#0A0E0B] font-extrabold text-sm tracking-tighter">
-            T
-          </div>
-          <span className="text-lg font-bold tracking-tight text-[#162518] dark:text-white">
-            Trackr
-          </span>
-        </div>
+        <Logo />
         <button
           onClick={() => navigate("/login")}
           className="text-xs font-bold tracking-wide uppercase px-5 py-2.5 rounded-full border border-[#162518]/10 dark:border-white/10 text-[#162518] dark:text-[#E6EDE7] hover:bg-[#162518]/5 dark:hover:bg-white/5 transition-all duration-200 active:scale-95 cursor-pointer"
