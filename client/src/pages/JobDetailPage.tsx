@@ -39,7 +39,7 @@ export default function JobDetailPage() {
         status: job.status,
         notes: notes,
       });
-      // Update local state to reflect change
+
       setJob({ ...job, notes });
       alert("Notes updated successfully!");
     } catch (err) {
@@ -62,6 +62,7 @@ export default function JobDetailPage() {
     return "bg-slate-50 text-slate-500 border border-slate-200/40";
   }
 
+  
   if (loading) {
     return (
       <div className="min-h-screen bg-[#EDF3ED] dark:bg-[#000000] text-[#162518] dark:text-[#E6EDE7] flex items-center justify-center font-sans">
