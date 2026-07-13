@@ -4,46 +4,54 @@ export default function Logo() {
     <div className="flex items-center gap-3 select-none group">
       {/* Sleek SVG Mark */}
       <svg
-        className="w-8 h-8 transform group-hover:scale-105 transition-transform duration-300"
+        className="w-8 h-8 transform group-hover:scale-105 group-hover:rotate-3 transition-transform duration-300"
         viewBox="0 0 32 32"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        {/* Left column bar representing foundations */}
+        <defs>
+          <linearGradient id="logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#81C784" />
+            <stop offset="100%" stopColor="#2F5C3B" />
+          </linearGradient>
+        </defs>
+
+        {/* Translucent background stem for depth */}
         <rect
-          x="6"
-          y="14"
-          width="4"
-          height="12"
-          rx="2"
-          className="fill-[#2F5C3B] dark:fill-[#81C784] opacity-40"
-        />
-        
-        {/* Middle column bar representing interviews */}
-        <rect
-          x="12"
-          y="8"
-          width="4"
+          x="13"
+          y="10"
+          width="6"
           height="18"
-          rx="2"
-          className="fill-[#2F5C3B] dark:fill-[#81C784] opacity-75"
+          rx="3"
+          className="fill-[#2F5C3B]/20 dark:fill-[#81C784]/20"
         />
 
-        {/* Upward check/growth arrow representing the offer */}
-        <path
-          d="M18 20L22 24L30 12"
-          strokeWidth="3.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="stroke-[#2F5C3B] dark:stroke-[#81C784]"
+        {/* Primary gradient stem */}
+        <rect
+          x="13"
+          y="13"
+          width="6"
+          height="12"
+          rx="3"
+          fill="url(#logo-grad)"
         />
 
-        {/* Outer connection nodes */}
+        {/* Primary horizontal crossbar */}
+        <rect
+          x="4"
+          y="5"
+          width="24"
+          height="6"
+          rx="3"
+          fill="url(#logo-grad)"
+        />
+
+        {/* High-tech target dot indicator */}
         <circle
-          cx="30"
-          cy="12"
-          r="2.5"
-          className="fill-[#1A3A22] dark:fill-emerald-400 animate-pulse"
+          cx="24"
+          cy="8"
+          r="1.75"
+          className="fill-white dark:fill-[#0A0E0B]"
         />
       </svg>
 
