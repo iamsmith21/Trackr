@@ -1,8 +1,16 @@
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Logo from "../components/Logo";
 
 export default function LandingPage() {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      navigate("/dashboard");
+    }
+  }, [navigate]);
 
   return (
     <div className="min-h-screen bg-[#EDF3ED] dark:bg-[#000000] text-[#162518] dark:text-[#E6EDE7] antialiased flex flex-col justify-between selection:bg-[#CBE0CE] dark:selection:bg-[#1C2C1E] transition-colors duration-300">
