@@ -1,4 +1,5 @@
-const API_URL = "http://localhost:3001/api";
+const API_URL = "https://trackr-pied-iota.vercel.app/api";
+
 
 document.addEventListener("DOMContentLoaded", async () => {
   const authScreen = document.getElementById("auth-screen");
