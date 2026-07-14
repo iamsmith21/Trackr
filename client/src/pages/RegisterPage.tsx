@@ -39,6 +39,18 @@ export default function RegisterPage() {
 
       {/* Main Frosted Glass Card */}
       <div className="w-full max-w-md bg-white/70 backdrop-blur-md border border-[#162518]/10 dark:border-white/10 rounded-3xl p-8 sm:p-10 shadow-2xl relative z-10">
+        
+        {/* Back Link */}
+        <button
+          onClick={() => navigate("/")}
+          className="absolute top-6 left-6 text-xs font-bold tracking-wide text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 transition-colors duration-200 flex items-center gap-1 cursor-pointer border-0 bg-transparent"
+        >
+          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+          </svg>
+          Back
+        </button>
+
         {/* Header Block */}
         <div className="flex flex-col items-center mb-8">
           <div className="mb-4">
