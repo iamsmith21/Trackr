@@ -57,7 +57,7 @@ npm run dev
 
 ---
 
-## 🔌 Chrome Extension Setup
+## 🔌 Chrome Extension Setup (Coming Soon... Stay Tuned)
 1.  Navigate to `chrome://extensions/` in your Chrome browser.
 2.  Enable **Developer mode** in the top-right corner.
 3.  Click **Load unpacked** in the top-left corner.
