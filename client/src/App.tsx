@@ -4,6 +4,8 @@ import LoginPage from "./pages/LoginPage";
 import JobDetailPage from "./pages/JobDetailPage";
 import RegisterPage from "./pages/RegisterPage";
 import LandingPage from "./pages/LandingPage";
+import PrivacyPage from "./pages/PrivacyPage";
+import TermsPage from "./pages/TermsPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 export default function App() {
@@ -24,6 +26,8 @@ export default function App() {
           </ProtectedRoute>
           } />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/privacy" element={<PrivacyPage />} />
+        <Route path="/terms" element={<TermsPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </>
