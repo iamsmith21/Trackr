@@ -1,11 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../utils/api";
+import Logo from "../components/Logo";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      navigate("/dashboard");
+    }
+  }, [navigate]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -19,7 +27,7 @@ export default function LoginPage() {
     navigate("/dashboard");
   }
 
-    return (
+  return (
     <div className="min-h-screen bg-[#EDF3ED] dark:bg-[#0A0E0B] text-[#162518] dark:text-[#E6EDE7] antialiased relative overflow-hidden flex items-center justify-center p-4">
       {/* Ambient background glows */}
       <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] max-w-[600px] rounded-full bg-emerald-400/10 blur-[120px] pointer-events-none" />
@@ -30,8 +38,8 @@ export default function LoginPage() {
         
         {/* Header Block */}
         <div className="flex flex-col items-center mb-8">
-          <div className="w-12 h-12 rounded-2xl bg-[#2F5C3B] dark:bg-[#E6EDE7] flex items-center justify-center text-white dark:text-[#0A0E0B] font-extrabold text-xl shadow-lg shadow-emerald-500/15 mb-4">
-            T
+          <div className="mb-4">
+            <Logo />
           </div>
           <h2 className="text-2xl font-bold tracking-tight text-slate-900">
             Welcome Back to Trackr

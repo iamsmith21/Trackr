@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { registerUser } from "../utils/api";
+import Logo from "../components/Logo";
 
 export default function RegisterPage() {
   const [fn, setFN] = useState("");
@@ -8,6 +9,13 @@ export default function RegisterPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      navigate("/dashboard");
+    }
+  }, [navigate]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -33,8 +41,8 @@ export default function RegisterPage() {
       <div className="w-full max-w-md bg-white/70 backdrop-blur-md border border-[#162518]/10 dark:border-white/10 rounded-3xl p-8 sm:p-10 shadow-2xl relative z-10">
         {/* Header Block */}
         <div className="flex flex-col items-center mb-8">
-          <div className="w-12 h-12 rounded-2xl bg-[#2F5C3B] dark:bg-[#E6EDE7] flex items-center justify-center text-white dark:text-[#0A0E0B] font-extrabold text-xl shadow-lg shadow-emerald-500/15 mb-4">
-            T
+          <div className="mb-4">
+            <Logo />
           </div>
           <h2 className="text-2xl font-bold tracking-tight text-slate-900">
             Welcome to Trackr
