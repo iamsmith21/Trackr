@@ -14,7 +14,12 @@ export default function DashboardPage() {
   const [editingJob, setEditingJob] = useState<Job | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [viewMode, setViewMode] = useState<"table" | "kanban">("table")
+  const [showBanner, setShowBanner] = useState(() => !localStorage.getItem("hide-extension-banner"))
 
+  const dismissBanner = () => {
+    localStorage.setItem("hide-extension-banner", "true")
+    setShowBanner(false)
+  }
   async function fetchJobs() {
     const data = await getJobs();
     setJobList(data.data);
@@ -66,6 +71,34 @@ export default function DashboardPage() {
       <main className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 relative z-10">
         <StatsCard jobList={jobList} />
 
+          {showBanner && (
+            <div className="w-full mt-6 bg-[#2F5C3B]/5 dark:bg-[#81C784]/5 border border-[#2F5C3B]/10 rounded-3xl p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 backdrop-blur-md relative overflow-hidden transition-all duration-300">
+              <div className="flex items-center gap-3">
+                <span className="text-xl select-none">🧩</span>
+                <div>
+                  <h4 className="text-sm font-bold text-slate-900 dark:text-white leading-tight">Stop manual typing - use the Trackr Clipper Extension</h4>
+                  <p className="text-xs text-slate-500 dark:text-[#86868B] mt-0.5">Clip role details and application links directly from LinkedIn in a single click.</p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-3 w-full sm:w-auto justify-end">
+                <a
+                href="https://chromewebstore.google.com/detail/trackr-clipper/your-actual-id"
+                target="_blank"
+                rel="noreferrer"
+                className="bg-[#2F5C3B] hover:bg-[#24472E] dark:bg-[#E6EDE7] dark:text-[#0A0E0B] dark:hover:bg-white text-white text-xs font-bold px-4 py-2.5 rounded-xl transition-all duration-300 text-center cursor-pointer"
+                >Add to Chrome</a>
+                <button
+                onClick={dismissBanner}
+                className="text-slate-400 hover:text-slate-600 dark:hover:text-white p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-white/5 transition-colors cursor-pointer"
+            title="Dismiss">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+            </button>
+              </div>
+            </div>
+          )}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white/70 dark:bg-white/5 border border-[#162518]/10 dark:border-white/10 rounded-2xl p-4 shadow-sm">
             <h3 className="text-md font-bold text-slate-900 dark:text-white uppercase tracking-wider">Active Applications</h3>
             <div className="flex bg-slate-100 dark:bg-white/5 p-1 rounded-xl border border-slate-200/50 dark:border-white/5 self-start sm:self-auto">

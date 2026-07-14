@@ -52,6 +52,19 @@ export default function Navbar({ onAddClick }: { onAddClick: () => void }) {
           </svg>
           Add Job
         </button>
+
+        <a
+        href="https://chromewebstore.google.com/detail/trackr-clipper/your-actual-id" // Replace with your approved store link
+        target="_blank"
+        rel="noreferrer"
+        className="text-slate-500 hover:text-slate-800 dark:text-[#a1a1a6] dark:hover:text-[#F5F5F7] text-xs font-bold px-3.5 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200/80 dark:bg-[#1D1D1F] dark:hover:bg-[#2C2C2E] transition-all duration-300 flex items-center gap-1.5"
+      >
+        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 11.517-1.325l.409.308a.75.75 0 001.077-.219l1.455-2.505a.75.75 0 011.026-.274l1.37.79a.75.75 0 01.274 1.027l-1.455 2.504a.75.75 0 00.22 1.078l.408.307a.75.75 0 01-.518 1.325l-.041-.02M10.5 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+        Extension
+      </a>
+      
         <button
           onClick={toggleTheme}
           className="p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-[#1D1D1F] dark:hover:bg-[#2C2C2E] text-slate-600 dark:text-[#a1a1a6] dark:hover:text-[#F5F5F7] transition-all duration-300 active:scale-95 cursor-pointer flex items-center justify-center"
